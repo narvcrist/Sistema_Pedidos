@@ -1,0 +1,69 @@
+.bloque {
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    padding: 2em;
+    display: flex;   
+}
+.side{
+    position: absolute;
+    width: 100%;
+}
+.publicar {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  padding: 3em;
+  width: 50%;
+ 
+}
+.subloque{
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  padding: 3em;
+}
+.unaVez option:first-child{
+  display: none;
+}
+.paginador ul{
+  padding: 15px;
+  list-style: none;
+  background: #FFF;
+  margin-top: 15px;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -0o-flex;
+  display: flex;
+  justify-content: flex-end;
+}
+.paginador a, .pagina{
+  color: #428BCA;
+  border: 1px solid #DDD;
+  padding: 5px ;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+  width: 35px;
+  text-decoration:none;
+}
+.paginador a:hover{
+  background: #DDD;
+}
+.pagina{
+  color: #FFF;
+  background: #428BCA;
+  border: 1px solid #428BCA;
+}
