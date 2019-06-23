@@ -35,7 +35,6 @@
 				$_SESSION['usuario']= $data['usu_nombre'];
 				$_SESSION['user']= $data['usu_usuario'];
 				$_SESSION['rol']= $data['id_rol'];
-
 				header('location: sistema/');
 				}else{
 					$alert='Correo o clave estan incorrectas';
