@@ -73,7 +73,7 @@
             <span class="caption">Productos</span></a>
             <ul data-role="dropdown">
               <li><a href="registroProductos.php"><span class="icon"><span class="mif-add fg-green"></span></span> <span class="caption">Nuevo producto</span></a></li>
-              <li><a href="#"><span class="icon"><span class="mif-file-text fg-green"></span></span> <span class="caption">Productos</span></a></li>
+              <li><a href="listaProductos.php"><span class="icon"><span class="mif-file-text fg-green"></span></span> <span class="caption">Productos</span></a></li>
             </ul>
     </li>
     <li>
@@ -97,3 +97,5 @@
     </div> 
     
 </div>
+
+

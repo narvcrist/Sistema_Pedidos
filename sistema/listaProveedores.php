@@ -6,11 +6,11 @@ session_start();
 <html>
 <head>
     <title>Sistema de gestion de pedidos</title>
-    <?php include "estructura.php"; ?>
+    <?php include "estructura/estructura.php"; ?>
 
 </head>
 <body>
-<?php include "header.php"; ?>
+<?php include "estructura/header.php"; ?>
     <div class="bloque">
         <div class = "subloque">
         <h2>Lista de proveedores</h2>
@@ -21,6 +21,8 @@ session_start();
                 </div>
             </div>
         </form>
+        <br>
+        <a href="registroProveedores.php"><button class="button success"><span class="mif-add">&nbsp;</span>Nuevo proveedor</button></a>
     <table class="table">
     <thead>
     <tr>
@@ -38,7 +40,7 @@ session_start();
         $resultado_registros = mysqli_fetch_array($consulta_registros);
         $registros = $resultado_registros['registros'];
 
-        $por_pagina = 7;
+        $por_pagina = 6;
         if(empty($_GET['pagina'])){
             $pagina = 1;
         }else{
@@ -62,11 +64,11 @@ session_start();
         <td><?php echo $data["prov_direccion"] ?></td>
         <td>
         <div data-role="charms" data-position="top"><div>top</div></div>
-            <a href="actualizarProveedores.php?id=<?php echo $data["prov_id"] ?>"><div class="mif-pencil fg-green"></div></a>
+            <a href="actualizarProveedores.php?id=<?php echo $data["prov_id"] ?>"><div class="mif-pencil fg-green" data-role="hint" data-hint-text="Editar proveedor"></div></a>
         <?php
             if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 ){ ?>
             |
-            <a href="eliminarProveedores.php?id=<?php echo $data["prov_id"] ?>"><div class="mif-bin fg-red"></div></a>
+            <a href="eliminarProveedores.php?id=<?php echo $data["prov_id"] ?>"><div class="mif-bin fg-red" data-role="hint" data-hint-text="Eliminar proveedor"></div></a>
         <?php } ?>        
         </td>
     </tr>
@@ -81,8 +83,8 @@ session_start();
         <?php
             if($pagina !=1){
         ?>
-            <li><a href="?pagina=<?php echo 1; ?>">|<</a></li>
-            <li><a href="?pagina=<?php echo $pagina-1; ?>"><<</a></li>
+            <li><a href="?pagina=<?php echo 1; ?>"><span class="mif-first"></span></a></li>
+            <li><a href="?pagina=<?php echo $pagina-1; ?>"><span class="mif-previous"></span></a></li>
             <?php
         }
             for ($i=1; $i <= $total_paginas; $i++){
@@ -93,8 +95,8 @@ session_start();
                 }
             }
             if($pagina != $total_paginas){?>
-            <li><a href="?pagina=<?php echo $pagina+1; ?>">>></a></li>
-            <li><a href="?pagina=<?php echo $total_paginas; ?>">>|</a></li>
+            <li><a href="?pagina=<?php echo $pagina+1; ?>"><span class="mif-next"></span></a></li>
+            <li><a href="?pagina=<?php echo $total_paginas; ?>"><span class="mif-last"></span></a></li>
         <?php } ?>
         </ul>
     </div>

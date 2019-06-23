@@ -9,11 +9,11 @@ if($_SESSION['rol'] !=1){
 <html>
 <head>
     <title>Sistema de gestion de pedidos</title>
-    <?php include "estructura.php"; ?>
+    <?php include "estructura/estructura.php"; ?>
 
 </head>
 <body>
-<?php include "header.php"; ?>
+<?php include "estructura/header.php"; ?>
     <div class="bloque">
         <div class = "subloque">
         <h2>Lista de usuarios</h2>
@@ -24,6 +24,8 @@ if($_SESSION['rol'] !=1){
                 </div>
             </div>
         </form>
+        <br>
+        <a href="registroUsuarios.php"><button class="button success"><span class="mif-add">&nbsp;</span>Nuevo usuario</button></a>
     <table class="table">
     <thead>
     <tr>
@@ -40,7 +42,7 @@ if($_SESSION['rol'] !=1){
         $resultado_registros = mysqli_fetch_array($consulta_registros);
         $registros = $resultado_registros['registros'];
 
-        $por_pagina = 7;
+        $por_pagina = 6;
         if(empty($_GET['pagina'])){
             $pagina = 1;
         }else{
@@ -67,10 +69,10 @@ if($_SESSION['rol'] !=1){
         <td><?php echo $data["rol_nombre"] ?></td>
         <td>
         <div data-role="charms" data-position="top"><div>top</div></div>
-            <a href="actualizarUsuarios.php?id=<?php echo $data["usu_id"] ?>"><div class="mif-pencil fg-green"></div></a>
+            <a href="actualizarUsuarios.php?id=<?php echo $data["usu_id"] ?>"><div class="mif-pencil fg-green"  data-role="hint" data-hint-text="Editar usuario"></div></a>
             <?php if($data['usu_id']!=1){?>
             |
-            <a href="eliminarUsuarios.php?id=<?php echo $data["usu_id"] ?>"><div class="mif-bin fg-red"></div></a>
+            <a href="eliminarUsuarios.php?id=<?php echo $data["usu_id"] ?>"><div class="mif-bin fg-red"  data-role="hint" data-hint-text="Eliminar usuario"></div></a>
             <?php } ?>
         </td>
     </tr>
@@ -85,8 +87,8 @@ if($_SESSION['rol'] !=1){
         <?php
             if($pagina !=1){
         ?>
-            <li><a href="?pagina=<?php echo 1; ?>">|<</a></li>
-            <li><a href="?pagina=<?php echo $pagina-1; ?>"><<</a></li>
+            <li><a href="?pagina=<?php echo 1; ?>"><span class="mif-first"></span></a></li>
+            <li><a href="?pagina=<?php echo $pagina-1; ?>"><span class="mif-previous"></span></a></li>
             <?php
         }
             for ($i=1; $i <= $total_paginas; $i++){
@@ -97,8 +99,8 @@ if($_SESSION['rol'] !=1){
                 }
             }
             if($pagina != $total_paginas){?>
-            <li><a href="?pagina=<?php echo $pagina+1; ?>">>></a></li>
-            <li><a href="?pagina=<?php echo $total_paginas; ?>">>|</a></li>
+            <li><a href="?pagina=<?php echo $pagina+1; ?>"><span class="mif-next"></span></a></li>
+            <li><a href="?pagina=<?php echo $total_paginas; ?>"><span class="mif-last"></span></a></li>
         <?php } ?>
         </ul>
     </div>

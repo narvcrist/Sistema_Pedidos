@@ -18,7 +18,7 @@
             $resultado = 0;
             if(is_numeric($idProveedor)){
                 $consulta= mysqli_query($conection,"SELECT *FROM proveedor
-                                                    WHERE prov_id != $idProveedor
+                                                    WHERE  (prov_nombre = '$nombre' AND prov_id != $idProveedor)
                                                     ");
                  $resultado = mysqli_fetch_array($consulta);
                 // $resultado = count($resultado);
@@ -62,10 +62,10 @@
 <html>
 <head>
   <title>Actualizar proveedor</title>
-  <?php include "estructura.php"; ?>
+  <?php include "estructura/estructura.php"; ?>
 </head>
 <body>
-<?php include "header.php"; ?>
+<?php include "estructura/header.php"; ?>
     <div class="bloque">
     <div class = "publicar">
     <h2>Actualizar proveedor</h2>

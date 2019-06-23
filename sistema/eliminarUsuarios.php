@@ -53,11 +53,11 @@
 <html>
 <head>
     <title>Eliminar usuario</title>
-    <?php include "estructura.php"; ?>
+    <?php include "estructura/estructura.php"; ?>
 
 </head>
 <body>
-<?php include "header.php"; ?>
+<?php include "estructura/header.php"; ?>
     <div class="bloque">
   
         <div class = "publicar">

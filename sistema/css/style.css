@@ -1,3 +1,14 @@
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	box-sizing: border-box;	
+}
+body{
+	display: flex;
+	min-height: 100vh;	
+}
 .bloque {
     position: absolute;
     top: 0;
@@ -66,4 +77,100 @@
   color: #FFF;
   background: #428BCA;
   border: 1px solid #428BCA;
+}
+.prevPhoto {
+  display: flex;
+  justify-content: space-between;
+  width: 160px;
+  height: 150px;
+  border: 1px solid #CCC;
+  position: relative;
+  cursor: pointer;
+  background: url(../images/uploads/user.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin: auto;
+}
+.prevPhoto label{
+cursor: pointer;
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+z-index: 2;
+}
+.prevPhoto img{
+width: 100%;
+height: 100%;
+}
+.upimg, .notBlock{
+display: none !important;
+}
+.errorArchivo{
+font-size: 16px;
+font-family: arial;
+color: #cc0000;
+text-align: center;
+font-weight: bold; 
+margin-top: 10px;
+}
+.delPhoto{
+
+display: -webkit-flex;
+display: -moz-flex;
+display: -ms-flex;
+display: -o-flex;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+width: 25px;
+height: 25px;
+
+position: absolute;
+right: -10px;
+top: -10px;
+z-index: 10;
+}
+#tbl_list_productos img{
+width: 50px;
+}
+.imgProductoDelete{
+width: 175px;
+}
+/* Estilo para la imagen en lista de productos */
+
+.imagen img{
+ 
+  width: 80px;
+  height: auto;
+}
+/* Estilo modal */
+.modal{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.50);
+  display: none;
+}
+.modal h3{
+  color: #A04835;
+  text-transform: uppercase;
+}
+.modal h4{
+  text-transform: uppercase;
+}
+.cuerpoModal{
+  margin: auto;
+	width: 95%;
+	padding: 30px;
+  max-width: 420px;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+}
+#form_add_product{
+  text-align: center;
 }

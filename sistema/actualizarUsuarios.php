@@ -82,10 +82,10 @@
 <html>
 <head>
   <title>Actualizar usuario</title>
-  <?php include "estructura.php"; ?>
+  <?php include "estructura/estructura.php"; ?>
 </head>
 <body>
-<?php include "header.php"; ?>
+<?php include "estructura/header.php"; ?>
     <div class="bloque">
     <div class = "publicar">
     <h2>Actualizar usuario</h2>

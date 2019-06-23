@@ -32,10 +32,10 @@
 <html>
 <head>
   <title>Registrar proveedor</title>
-  <?php include "estructura.php"; ?>
+  <?php include "estructura/estructura.php"; ?>
 </head>
 <body>
-<?php include "header.php"; ?>
+<?php include "estructura/header.php"; ?>
     <div class="bloque">
     <div class = "publicar">
     <h2>Registrar proveedor</h2>
@@ -46,8 +46,8 @@
             <div class="card-content p-2">
                 <form class="ingresar" action="" method="post">
                     <div class="form-group">
-                        <label for="nombre">Nombres y apellidos:</label>
-                        <input type="text" name="nombre" placeholder="Ingresa tus nombres completos"/>
+                        <label for="nombre">Nombre del proveedor:</label>
+                        <input type="text" name="nombre" placeholder="Ingresa el nombre del proveedor"/>
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
