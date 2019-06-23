@@ -63,7 +63,7 @@
         <form action="" method="post">
             <input type="hidden" name="idProveedor" value="<?php echo $idProveedor; ?>">
             <div class="col-12 text-right">
-            <a href="listaProveedores.php">Cancelar</a>
+            <a href="listaProveedores.php"><input type="button" class="button" value="Cerrar"></a>
             <button class="button alert">Eliminar</button></div>
             
         </form>

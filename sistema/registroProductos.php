@@ -96,7 +96,7 @@
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad:</label>
-                        <input type="number" name="cantidad" placeholder="Cantidad del producto"/>
+                        <input type="text" data-role="spinner" data-buttons-position="right" name="cantidad" data-min-value="1" data-max-value="500" name="cantidad" />
                     </div>
                     <div class="form-group">
                         <div class="photo">

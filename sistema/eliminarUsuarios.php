@@ -72,7 +72,7 @@
         <form action="" method="post">
             <input type="hidden" name="idUsuario" value="<?php echo $idUsuario; ?>">
             <div class="col-12 text-right">
-            <a href="listaUsuarios.php">Cancelar</a>
+            <a href="listaUsuarios.php"><input type="button" class="button" value="Cerrar"></a>
             <button class="button alert">Eliminar</button></div>
             
         </form>

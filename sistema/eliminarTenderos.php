@@ -66,9 +66,9 @@
         <form action="" method="post">
             <input type="hidden" name="idTendero" value="<?php echo $idTendero; ?>">
             <div class="col-12 text-right">
-            <a href="listaTenderos.php">Cancelar</a>
-            <button class="button alert">Eliminar</button></div>
-            
+            <a href="listaTenderos.php"><input type="button" class="button" value="Cerrar"></a>
+            <button class="button alert">Eliminar</button>
+        </div>    
         </form>
     </div>
 </div>

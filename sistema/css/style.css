@@ -171,6 +171,6 @@ width: 175px;
   justify-content: center;
   align-items: center;
 }
-#form_add_product{
+#form_add_product, #form_del_product{
   text-align: center;
 }

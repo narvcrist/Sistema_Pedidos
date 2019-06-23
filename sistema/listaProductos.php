@@ -10,6 +10,7 @@ session_start();
 
 </head>
 <body>
+
 <?php include "estructura/header.php"; ?>
     <div class="bloque">
         <div class = "subloque">
@@ -66,20 +67,21 @@ session_start();
                     $foto = 'img/'.$data['pro_foto'];
                 }
     ?>
-    <tr>
-        <td><?php echo $data['pro_id'] ?></td>
-        <td><?php echo $data['pro_descripcion'] ?></td>
-        <td><?php echo $data['pro_precio'] ?></td>
-        <td><?php echo $data['pro_stock'] ?></td>
-        <td><?php echo $data['prov_nombre'] ?></td>
+    <tr class="rows<?php echo $data['pro_id']; ?>">
+        <td><?php echo $data['pro_id']; ?></td>
+        <td><?php echo $data['pro_descripcion']; ?></td>
+        <td><?php echo $data['pro_precio']; ?></td>
+        <td><?php echo $data['pro_stock']; ?></td>
+        <td><?php echo $data['prov_nombre']; ?></td>
         <td class="imagen"><img src="<?php echo $foto ?>" alt="<?php echo $data['pro_descripcion'] ?>"></td>
         <td>
         <div data-role="charms" data-position="top"><div>top</div></div>
         <?php  if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 ){ ?>
+            <!--<a href="#" class="add_product" product="<?php echo $data['pro_id']; ?>"><div class="mif-add fg-blue" data-role="hint" data-hint-text="Añadir mas productos"></div></a>!-->
             
             <a href="actualizarProductos.php?id=<?php echo $data['pro_id']; ?>"><div class="mif-pencil fg-green" data-role="hint" data-hint-text="Editar producto"></div></a>
             |
-            <a href="eliminarProductos.php?id=<?php echo $data['pro_id']; ?>"><div class="mif-bin fg-red" data-role="hint" data-hint-text="Eliminar producto"></div></a>    
+            <a class="del_product" href="#" product="<?php echo $data['pro_id']; ?>"><div class="mif-bin fg-red" data-role="hint" data-hint-text="Eliminar producto"></div></a>    
         </td>
         <?php } ?>    
     </tr>
@@ -113,6 +115,7 @@ session_start();
     </div>
     </div>
 </div>
+<?php include "estructura/modal.php"; ?>
 </body>
 </html>
 

@@ -4,6 +4,7 @@
         header('location: ../');
     }
 ?>
+<div class="pie" >SISTEMA DE PEDIDOS</div>
 <div data-role="navview" class="side">
     <div class="navview-pane">
         <button class="pull-button">
