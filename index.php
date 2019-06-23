@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	
 	$alert='';
 	session_start();
@@ -54,6 +54,7 @@
 <link href="css/estilo.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div class="pie" >SISTEMA DE PEDIDOS</div>
 	<form class="ingresar" action="" method="post">
         <h2>Inicia sesión</h2> 
         <input  class="campo1" id="email" type="text" name="usuario" placeholder="Usuario" >

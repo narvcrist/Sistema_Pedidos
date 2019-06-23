@@ -9,7 +9,7 @@
 	box-sizing: border-box;	
 }
 body{
-	display: flex;
+	
 	min-height: 100vh;	
 }
 form{
@@ -17,6 +17,7 @@ form{
 	width: 95%;
 	padding: 30px;
 	max-width: 420px;
+	
 	
 }
 h2{
@@ -80,4 +81,9 @@ a:hover{
 	text-align: center;
 	color: red;
 
+}
+.pie{
+    background: #154360;
+	color:white;
+	padding: 20px;
 }
