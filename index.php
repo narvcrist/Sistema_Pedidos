@@ -27,7 +27,7 @@
 			$resultado=mysqli_query($conection,$consulta);
 			mysqli_close($conection);
 			$filas=mysqli_num_rows($resultado);
-			if($resultado > 0)
+			if($filas > 0)
 				{
 				$data = mysqli_fetch_array($resultado);
 				$_SESSION['active']= true;
@@ -54,7 +54,7 @@
 <link href="css/estilo.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="pie" >SISTEMA DE PEDIDOS</div>
+<div class="pie" >SISTEM-PEDIDOS</div>
 	<form class="ingresar" action="" method="post">
         <h2>Inicia sesión</h2> 
         <input  class="campo1" id="email" type="email" name="usuario" placeholder="Usuario" >

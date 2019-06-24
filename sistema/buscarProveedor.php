@@ -17,16 +17,16 @@
         <?php
             $busqueda = strtolower($_REQUEST['busqueda']);
             if(empty($busqueda)){
-                header('location: listaTenderos.php');
+                header('location: listaProveedores.php');
                 mysqli_close($conection);
             }
         ?>
 
-        <h2>Lista de tenderos</h2>
-        <form action="buscarTendero.php" method="get">
+        <h2>Lista de proveedores</h2>
+        <form action="buscarProveedor.php" method="get">
             <div class="row">
                 <div class="cell-md-6">
-                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar tenderos" value="<?php echo $busqueda; ?>">
+                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar proveedor" value="<?php echo $busqueda; ?>">
                 </div>
             </div>
         </form>
@@ -35,9 +35,8 @@
     <tr>
         <th data-sortable="true" data-sort-dir="asc">ID</th>
         <th data-sortable="true">Nombre</th>
-        <th data-sortable="true">Cédula</th>
         <th data-sortable="true">Telefono</th>
-        <th data-sortable="true">Dirección</th>
+        <th data-sortable="true">Correo</th>
         <th >Acciones</th>
     </tr>
     </thead>
@@ -59,32 +58,30 @@
         
 
 
-        $consulta = mysqli_query($conection,"SELECT *FROM tendero
+        $consulta = mysqli_query($conection,"SELECT *FROM proveedor
                                                 WHERE 
-                                                ( ten_id LIKE '%$busqueda%'
-                                                        OR ten_nombre LIKE '%$busqueda%'
-                                                        OR ten_cedula LIKE '%$busqueda%'
-                                                        OR ten_telefono LIKE '%$busqueda%'
-                                                        OR ten_direccion LIKE '%$busqueda%')
-                                                        AND estado = 1 ORDER BY ten_id ASC LIMIT $desde, $por_pagina");
+                                                ( prov_id LIKE '%$busqueda%'
+                                                        OR prov_nombre LIKE '%$busqueda%'
+                                                        OR prov_telefono LIKE '%$busqueda%'
+                                                        OR prov_email LIKE '%$busqueda%')
+                                                        AND prov_estado = 1 ORDER BY prov_id ASC LIMIT $desde, $por_pagina");
         mysqli_close($conection);
         $resultado = mysqli_num_rows($consulta);
         if($resultado > 0 ){
             while($data = mysqli_fetch_array($consulta)){
     ?>
     <tr>
-        <td><?php echo $data["ten_id"] ?></td>
-        <td><?php echo $data["ten_nombre"] ?></td>
-        <td><?php echo $data["ten_cedula"] ?></td>
-        <td><?php echo $data["ten_telefono"] ?></td>
-        <td><?php echo $data["ten_direccion"] ?></td>
+        <td><?php echo $data["prov_id"] ?></td>
+        <td><?php echo $data["prov_nombre"] ?></td>
+        <td><?php echo $data["prov_telefono"] ?></td>
+        <td><?php echo $data["prov_email"] ?></td>
         <td>
         <div data-role="charms" data-position="top"><div>top</div></div>
-            <a href="actualizarTendero.php?id=<?php echo $data["ten_id"] ?>"><div class="mif-pencil fg-green"></div></a>
+            <a href="actualizarProveedores.php?id=<?php echo $data["ten_id"] ?>"><div class="mif-pencil fg-green"></div></a>
             <?php
             if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 ){ ?>
             |
-            <a href="eliminarTendero.php?id=<?php echo $data["ten_id"] ?>"><div class="mif-bin fg-red"></div></a>
+            <a href="eliminarProveedores.php?id=<?php echo $data["prov_id"] ?>"><div class="mif-bin fg-red"></div></a>
             <?php } ?> 
         </td>
     </tr>

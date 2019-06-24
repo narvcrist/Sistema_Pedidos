@@ -140,7 +140,7 @@ function sendDataProduct(){
         }
     });
 }
-//Funcion para eliminar productos
+//Funcion para eliminar productos (Desplegar modal)
 function delProduct(){
 
     var pr = $('#producto_id').val();
