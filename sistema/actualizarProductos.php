@@ -141,7 +141,7 @@
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio:</label>
-                        <input type="number" name="precio" placeholder="Precio del producto" value="<?php echo $data_producto['pro_precio']; ?>"/>
+                        <input type="text" name="precio" placeholder="Precio del producto" value="<?php echo $data_producto['pro_precio']; ?>"/>
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad:</label>

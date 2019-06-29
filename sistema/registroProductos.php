@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio:</label>
-                        <input type="number" name="precio" placeholder="Precio del producto"/>
+                        <input type="text" name="precio" placeholder="Precio del producto"/>
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad:</label>
