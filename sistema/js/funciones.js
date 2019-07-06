@@ -119,7 +119,18 @@ $(document).ready(function(){
         $('.modal').fadeIn();
     });
 
-});
+    //Activar inputs en nueva factura para crear clientes
+    $('.btn_new_cliente').click(function(e){
+        e.preventDefault();
+        $('#ced_cliente').removeAttr('disabled');
+        $('#nom_cliente').removeAttr('disabled');
+        $('#tel_cliente').removeAttr('disabled');
+        $('#dir_cliente').removeAttr('disabled');
+
+        $('#div_registro_cliente').slideDown();
+    });
+
+}); //END 
 
 //Funcion para agregar mas productos
 function sendDataProduct(){

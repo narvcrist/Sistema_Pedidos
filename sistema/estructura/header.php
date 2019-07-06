@@ -82,8 +82,8 @@
             <span class="icon"><span class="mif-files-empty fg-blue"></span></span>
             <span class="caption">Facturas</span></a>
             <ul data-role="dropdown">
-              <li><a href="#"><span class="icon"><span class="mif-add fg-green"></span></span> <span class="caption">Nuevo factura</span></a></li>
-              <li><a href="#"><span class="icon"><span class="mif-file-text fg-green"></span></span> <span class="caption">Facturas</span></a></li>
+              <li><a href="nuevaFactura.php"><span class="icon"><span class="mif-add fg-green"></span></span> <span class="caption">Nuevo factura</span></a></li>
+              <li><a href="listaFacturas.php"><span class="icon"><span class="mif-file-text fg-green"></span></span> <span class="caption">Facturas</span></a></li>
             </ul>
     </li>
     <br>
