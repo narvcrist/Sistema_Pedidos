@@ -43,8 +43,55 @@
                 }
             }
             echo "error";  
+            exit;
         }
-        exit;
+
+        //Buscar tendero
+        if($_POST['action'] == 'searchCliente'){
+            
+            if(!empty($_POST['cliente'])){
+                $ced = $_POST['cliente'];
+
+               $consulta = mysqli_query($conection,"SELECT *FROM tendero WHERE ten_cedula LIKE '$ced' AND estado = 1");
+                mysqli_close($conection);
+                $resultado = mysqli_num_rows($consulta);
+
+                $data = '';
+                if($resultado > 0){
+                    $data = mysqli_fetch_assoc($consulta);
+                }else{
+                    $data = 0;
+                }
+               echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            }
+            exit;
+        }
+
+        //Registar tendero desde nueva factura
+        if($_POST['action'] == 'addTendero'){
+
+            $cedula = $_POST['ced_cliente'];
+            $nombre = $_POST['nom_cliente'];
+            $telefono = $_POST['tel_cliente'];
+            $direccion = $_POST['dir_cliente'];
+            $usuarioId = $_SESSION['Usu_id'];
+
+            $consulta_insert = mysqli_query($conection,"INSERT INTO tendero(ten_nombre, ten_cedula, ten_direccion, ten_telefono, ten_idUsuario)
+            VALUES('$nombre','$cedula','$direccion','$telefono','$usuarioId')");
+
+            if($consulta_insert){
+                $codCliente = mysqli_insert_id($conection);
+                $msg = $codCliente;
+            }else{
+                $msg = "error";
+            }
+            mysqli_close($conection);
+            echo $msg;
+            exit;
+
+
+        }
+        
     }
     exit; 
 ?>

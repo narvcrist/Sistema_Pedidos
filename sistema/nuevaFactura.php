@@ -24,7 +24,7 @@
                 <input type="hidden" name="idCliente" id="idCliente" value="">
 
                 <div class="wd30">
-                    <label for="proveedor">Cédula:</label>
+                    <label for="cedula">Cédula:</label>
                     <input type="number" name="ced_cliente" id="ced_cliente" placeholder="Número de cédula del tendero" disabled required/>
                 </div>
                 <div class="wd30">
