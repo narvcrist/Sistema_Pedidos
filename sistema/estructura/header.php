@@ -47,7 +47,7 @@
 
     <?php } ?>
     <?php
-        if($_SESSION['rol'] ==1 || $_SESSION['rol'] ==2){
+        if($_SESSION['rol'] ==1){  //Si es 1=Administrador entonces tiene permiso para Administrar provedores/tenderos/productos/facturas
     ?>       
     <li>
         <a href="#" class="dropdown-toggle">
@@ -59,6 +59,9 @@
             </ul>      
     </li>
     <?php } ?>
+    <?php
+        if($_SESSION['rol'] ==1 || $_SESSION['rol'] ==2){  //Si es 1=Administrador entonces tiene permiso para Administrar provedores/tenderos/productos/facturas
+    ?>   
     <li>
         <a href="#" class="dropdown-toggle">
             <span class="icon"><span class="mif-shop fg-blue"></span></span>
@@ -68,13 +71,23 @@
               <li><a href="listaTenderos.php"><span class="icon"><span class="mif-file-text fg-green"></span></span> <span class="caption">Tenderos</span></a></li>
             </ul>
     </li>
+    <?php } ?>
     <li>
         <a href="#" class="dropdown-toggle">
             <span class="icon"><span class="mif-shopping-basket fg-blue"></span></span>
             <span class="caption">Productos</span></a>
             <ul data-role="dropdown">
+                <?php
+                if($_SESSION['rol'] ==1 || $_SESSION['rol'] ==2){  //Si es 1=Administrador entonces tiene permiso para Administrar provedores/tenderos/productos/facturas
+                ?> 
               <li><a href="registroProductos.php"><span class="icon"><span class="mif-add fg-green"></span></span> <span class="caption">Nuevo producto</span></a></li>
+              <?php } ?>
               <li><a href="listaProductos.php"><span class="icon"><span class="mif-file-text fg-green"></span></span> <span class="caption">Productos</span></a></li>
+              <?php
+                if($_SESSION['rol'] ==3){  //Si es 1=Administrador entonces tiene permiso para Administrar provedores/tenderos/productos/facturas
+                ?>
+              <li><a href="listaProductos.php"><span class="icon"><span class="mif-file-text fg-green"></span></span> <span class="caption">Mis pedidos</span></a></li>
+              <?php } ?>
             </ul>
     </li>
     <li>

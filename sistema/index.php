@@ -11,7 +11,7 @@
 <body>
 <?php include "estructura/header.php"; ?>
     <div class="bloque">
-        <h1>Hola</h1>
+        <h4>Bienvenido&nbsp;<?php echo $_SESSION['usuario'];?></h4>
     </div>
 
 </body>

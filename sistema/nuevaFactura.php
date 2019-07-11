@@ -12,7 +12,7 @@
 <?php include "estructura/header.php"; ?>
 <div class="bloque">
     <div class = "subloque">
-    <h2>Nueva Factura</h2>
+    <h2><span class="icon"><span class="mif-files-empty fg-blue"></span>&nbsp;Nueva Factura</h2>
         <div class="card"></div>
         <h5>Datos del tendero:</h5>   
         <a href="#"><button class="button success btn_new_cliente"><span class="mif-add">&nbsp;</span>Nuevo tendero</button></a>
@@ -25,7 +25,7 @@
 
                 <div class="wd30">
                     <label for="cedula">Cédula:</label>
-                    <input type="number" name="ced_cliente" id="ced_cliente" placeholder="Número de cédula del tendero" disabled required/>
+                    <input type="number" name="ced_cliente" id="ced_cliente" placeholder="Número de cédula del tendero" required/>
                 </div>
                 <div class="wd30">
                     <label for="nombre">Nombres:</label>
