@@ -56,7 +56,7 @@
 <body>
 <div class="pie" >SISTEM-PEDIDOS</div>
 	<form class="ingresar" action="" method="post">
-        <h2>Inicia sesión</h2> 
+        <h2>Iniciar sesión</h2> 
         <input  class="campo1" id="email" type="email" name="usuario" placeholder="Usuario" >
         <input  class="campo" id="clave" type="password" name="clave" placeholder="Contraseña" >
         <br>

@@ -44,22 +44,25 @@
             </h5></strong></div>
             <div class="alerta"><?php echo isset($alert)? $alert : ''; ?></div>
             <div class="card-content p-2">
-                <form class="ingresar" action="" method="post">
+                <form class="ingresar" action="" method="post" data-role="validator" action="javascript:">
                     <div class="form-group">
                         <label for="nombre">Nombre del proveedor:</label>
-                        <input type="text" name="nombre" placeholder="Ingresa el nombre del proveedor"/>
+                        <input type="text" name="nombre" placeholder="Ingresa el nombre del proveedor"  data-validate="required"/>
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
-                        <input type="number" name="telefono" placeholder="Ingrese el número telefónico"/>
+                        <input type="number" name="telefono" placeholder="Ingrese el número telefónico" />
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo eléctronico:</label>
-                        <input type="email" name="correo" placeholder="Correo eléctronico"/>
+                        <input type="email" name="correo" placeholder="Correo eléctronico" data-validate="required email"/>
+                        <span class="invalid_feedback">
+                            Ingresa un correo electrónico válido
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="direccion">Dirección:</label>
-                        <input type="text" name="direccion" placeholder="Ingrese la dirección"/>
+                        <input type="text" name="direccion" placeholder="Ingrese la dirección"  data-validate="required"/>
                     </div>
                     <br>
                     <div class="col-12 text-right">

@@ -52,22 +52,28 @@
             </h5></strong></div>
             <div class="alerta"><?php echo isset($alert)? $alert : ''; ?></div>
             <div class="card-content p-2">
-                <form class="ingresar" action="" method="post">
+                <form class="ingresar" action="" method="post" data-role="validator" action="javascript:">
                     <div class="form-group">
                         <label for="nombre">Nombres y apellidos:</label>
-                        <input type="text" name="nombre" placeholder="Ingresa tus nombres completos"/>
+                        <input type="text" name="nombre" placeholder="Ingresa tus nombres completos" data-validate="required"/>
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo eléctronico:</label>
-                        <input type="email" name="correo" placeholder="Correo eléctronico"/>
+                        <input type="email" name="correo" placeholder="Correo eléctronico" data-validate="required email"/>
+                        <span class="invalid_feedback">
+                            Ingresa un correo electrónico válido
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="usuario">Nombre de usuario:</label>
-                        <input type="text" name="usuario" placeholder="Usuario"/>
+                        <input type="text" name="usuario" placeholder="Usuario" data-validate="required"/>
                     </div>
                     <div class="form-group">
                         <label for="clave">Contraseña:</label>
-                        <input type="password" name="clave" placeholder="Contraseña"/>
+                        <input type="password" name="clave" placeholder="Contraseña"  data-validate="minlength=8"/>
+                        <span class="invalid_feedback">
+                            La contraseña debe tener 8 caracteres o más!
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="rol">Rol de usuario:</label>
@@ -75,7 +81,7 @@
                             $consulta_rol = mysqli_query($conection, "SELECT *FROM rol");
                             $resultado_rol = mysqli_num_rows($consulta_rol);
                         ?>
-                        <select name="rol" id='rol' class="unaVez">
+                        <select name="rol" id='rol' class="unaVez" data-validate="required">
 
                             <?php
                                 echo $option;

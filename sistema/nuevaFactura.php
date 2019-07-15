@@ -25,11 +25,11 @@
 
                 <div class="wd30">
                     <label for="cedula">Cédula:</label>
-                    <input type="number" name="ced_cliente" id="ced_cliente" placeholder="Número de cédula del tendero" required/>
+                    <input type="number" name="ced_cliente" id="ced_cliente" placeholder="Número de cédula del tendero" required  onkeypress="return solonumeros(event);"/>
                 </div>
                 <div class="wd30">
                     <label for="nombre">Nombres:</label>
-                    <input type="text" name="nom_cliente" id="nom_cliente" placeholder="Nombre del tendero" disabled required/>
+                    <input type="text" name="nom_cliente" id="nom_cliente" placeholder="Nombre del tendero" disabled required />
                 </div>
                 <div class="wd30">
                     <label for="precio">Teléfono:</label>
@@ -50,7 +50,7 @@
                 <div class="datos">
                     <div class="wd50">
                         <label>Vendedor</label>
-                        <p>Cristian Narvaez</p>
+                        <p><?php echo $_SESSION['usuario'];?></p>
                     </div>
                     <div class="wd50">
                         <label>Acciones</label>
@@ -66,7 +66,7 @@
             <table class="table">
             <thead>
                 <tr >
-                    <th class="table_color" data-sortable="true" data-sort-dir="asc" width="100px">ID</th>
+                    <th class="table_color" data-sortable="true" data-sort-dir="asc" width="100px">Código</th>
                     <th class="table_color" data-sortable="true">Nombre del producto</th>
                     <th class="table_color" data-sortable="true">Stock</th>
                     <th class="table_color" data-sortable="true" width="100px">Cantidad</th>
@@ -78,10 +78,10 @@
                 <tbody>
     
                 <tr>
-                    <td><input type="text" name="txt_cod_producto" id="txt_cod_producto"></td>
+                    <td><input type="text" name="txt_cod_producto" id="txt_cod_producto"  onkeypress="return solonumeros(event);"></td>
                     <td id="txt_descripcion">-</td>
-                    <td id="txt_exixstencia">-</td>
-                    <td><input type="text" name="txt_cant_producto" id="txt_cant_producto" vlaue="0" min="1" disabled></td>
+                    <td id="txt_existencia">-</td>
+                    <td><input type="text" name="txt_cant_producto" id="txt_cant_producto" value="0" min="1" disabled onkeypress="return solonumeros(event);"></td>
                     <td id="txt_precio">00.00</td>
                     <td id="txt_precio_total">00.00</td>
                     <td><a href="#" id="add_product_venta" class="link_add"><input type="button" class="button success" value="Agregar"></a></td>
@@ -89,7 +89,7 @@
                  </tbody>
                  <thead>
                 <tr>
-                    <th class="table_color"  data-sortable="true" data-sort-dir="asc">ID</th>
+                    <th class="table_color"  data-sortable="true" data-sort-dir="asc">Código</th>
                     <th class="table_color" data-sortable="true" colspan="2">Nombre del producto</th>
                     <th class="textright table_color" data-sortable="true">Cantidad</th>
                     <th class="textright table_color" data-sortable="true">Precio</th>
@@ -97,37 +97,22 @@
                     <th class="table_color">Acciones</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td data-sortable="true" data-sort-dir="asc">10</td>
-                    <td data-sortable="true" colspan="2">Pan blanco</th>
-                    <td data-sortable="true">3</td>
-                    <td data-sortable="true">1</td>
-                    <td data-sortable="true">3</td>
-                    <td class="">
-                    <a href="" class="link_delete" onclick="event.preventDefault();
-                    del_product_detalle(1);"><div class="mif-bin fg-red"  data-role="hint" data-hint-text="Eliminar producto"></div></a>
-                    </td>
-                </tr>
+                <tbody id="detalle_venta">
+                    <!-- AJAX -->
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td id="iz" colspan="5">SUBTOTAL Q.</td>
-                        <td class="textright">166.89</td>
-                    </tr>
-                    <tr>
-                        <td id="iz" colspan="5">IVA (12%)</td>
-                        <td class="textright">166.89</td>
-                    </tr>
-                    <tr>
-                        <td id="iz" colspan="5">TOTAL Q.</td>
-                        <td class="textright">166.89</td>
-                    </tr>
+                <tfoot id="detalle_totales">
+                   <!-- AJAX -->
                 </tfoot>
             </table>
             </div>
         </div>
     </div>  
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var usuarioid = '<?php echo $_SESSION['Usu_id']; ?>';
+        serchForDetalle(usuarioid);
+    });
+</script>
 </body>
 </html>

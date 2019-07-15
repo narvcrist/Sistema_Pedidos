@@ -5,12 +5,12 @@
     //print_r($_POST); exit;
 
     if(!empty($_POST)){
-        //tRAER  DATOS DEL PRODUCTO
+        // TRAER  DATOS DEL PRODUCTO
         if($_POST['action'] == 'infoProducto'){
             //echo "Consultar";
             $producto_id = $_POST['producto'];
 
-            $consulta = mysqli_query($conection,"SELECT pro_id, pro_descripcion
+            $consulta = mysqli_query($conection,"SELECT pro_id, pro_descripcion, pro_stock, pro_precio
                                                     FROM producto
                                                     WHERE pro_id = $producto_id 
                                                     AND pro_estado = 1");
@@ -90,6 +90,161 @@
             exit;
 
 
+        }
+
+        // Agregar producto al detalle temporal
+        if($_POST['action'] == 'addProductoDetalle'){
+            if(empty($_POST['producto']) || empty($_POST['cantidad'])){
+                echo 'error';
+            }else{
+                $codproducto = $_POST['producto'];
+                $cantidad = $_POST['cantidad'];
+                $token = md5($_SESSION['Usu_id']);
+
+                $consulta_iva = mysqli_query($conection, "SELECT con_iva FROM configuracion");
+                $resultado_iva = mysqli_num_rows($consulta_iva);
+
+                $query_detalletemporal = mysqli_query($conection, "CALL add_detalle_temp($codproducto, $cantidad, '$token')");
+                $result = mysqli_num_rows($query_detalletemporal);
+
+                $detalleTabla = '';
+                $sub_total = 0;
+                $iva = 0;
+                $total = 0;
+                $arrayData = array();
+
+                if($result >0){
+                    if($resultado_iva >0){
+                        $info_iva = mysqli_fetch_assoc($consulta_iva);
+                        $iva = $info_iva['con_iva'];
+                    }
+                    while ($data = mysqli_fetch_assoc($query_detalletemporal)){
+                        $precioTotal = round($data['deTe_cantidad'] * $data['deTe_precioTotal'], 2);
+                        $sub_total = round($sub_total + $precioTotal, 2);
+                        $total = round($total + $precioTotal, 2);
+
+                        $detalleTabla .= '<tr>
+                                            <td data-sortable="true" data-sort-dir="asc">'.$data['deTe_idProducto'].'</td>
+                                            <td data-sortable="true" colspan="2">'.$data['pro_descripcion'].'</th>
+                                            <td data-sortable="true">'.$data['deTe_cantidad'].'</td>
+                                            <td data-sortable="true">'.$data['deTe_precioTotal'].'</td>
+                                            <td data-sortable="true">'.$precioTotal.'</td>
+                                            <td class="">
+                                            <a href="" class="link_delete" onclick="event.preventDefault();
+                                            del_product_detalle('.$data['deTe_idProducto'].');"><div class="mif-bin fg-red"  data-role="hint" data-hint-text="Eliminar producto"></div></a>
+                                            </td>
+                                        </tr>';
+                    }
+
+                    $impuesto = round($sub_total * ($iva / 100), 2);
+                    $sin_iva = round($sub_total - $impuesto, 2);
+                    $total = round($sin_iva + $impuesto, 2);
+
+                    $detalleTotales = ' <tr>
+                                            <td id="iz" colspan="5">SUBTOTAL Q.</td>
+                                            <td class="textright">'.$sin_iva.'</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="iz" colspan="5">IVA ('.$iva.')</td>
+                                            <td class="textright">'.$impuesto.'</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="iz" colspan="5">TOTAL Q.</td>
+                                            <td class="textright">'.$total.'</td>
+                                        </tr>';
+
+                    $arrayData['detalle'] = $detalleTabla;
+                    $arrayData['totales'] = $detalleTotales;
+                    
+                    echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+                }else{
+                    echo 'error';
+                }
+                mysqli_close($conection);
+            }
+        }
+
+        // Extraer al detalle temporal
+        if($_POST['action'] == 'serchForDetalle'){
+            if(empty($_POST['user'])){
+
+                echo 'error';
+            }else{
+                
+                $token = md5($_SESSION['Usu_id']);
+
+                $query = mysqli_query($conection, "SELECT tmp.deTe_id,
+                                                            tmp.token_user,
+                                                            tmp.deTe_cantidad,
+                                                            tmp.deTe_precioTotal,
+                                                            tmp.deTe_idProducto,
+                                                            p.pro_id,
+                                                            p.pro_descripcion
+                                                            FROM detalletemporal tmp
+                                                            INNER JOIN producto p
+                                                            ON tmp.deTe_idProducto = p.pro_id
+                                                            WHERE token_user = '$token'");
+
+                $result = mysqli_num_rows($query);
+
+                $consulta_iva = mysqli_query($conection, "SELECT con_iva FROM configuracion");
+                $resultado_iva = mysqli_num_rows($consulta_iva);
+
+                $detalleTabla = '';
+                $sub_total = 0;
+                $iva = 0;
+                $total = 0;
+                $arrayData = array();
+
+                if($result >0){
+                    if($resultado_iva >0){
+                        $info_iva = mysqli_fetch_assoc($consulta_iva);
+                        $iva = $info_iva['con_iva'];
+                    }
+                    while ($data = mysqli_fetch_assoc($query)){
+                        $precioTotal = round($data['deTe_cantidad'] * $data['deTe_precioTotal'], 2);
+                        $sub_total = round($sub_total + $precioTotal, 2);
+                        $total = round($total + $precioTotal, 2);
+
+                        $detalleTabla .= '<tr>
+                                            <td data-sortable="true" data-sort-dir="asc">'.$data['deTe_idProducto'].'</td>
+                                            <td data-sortable="true" colspan="2">'.$data['pro_descripcion'].'</th>
+                                            <td data-sortable="true">'.$data['deTe_cantidad'].'</td>
+                                            <td data-sortable="true">'.$data['deTe_precioTotal'].'</td>
+                                            <td data-sortable="true">'.$precioTotal.'</td>
+                                            <td class="">
+                                            <a href="" class="link_delete" onclick="event.preventDefault();
+                                            del_product_detalle('.$data['deTe_idProducto'].');"><div class="mif-bin fg-red"  data-role="hint" data-hint-text="Eliminar producto"></div></a>
+                                            </td>
+                                        </tr>';
+                    }
+
+                    $impuesto = round($sub_total * ($iva / 100), 2);
+                    $sin_iva = round($sub_total - $impuesto, 2);
+                    $total = round($sin_iva + $impuesto, 2);
+
+                    $detalleTotales = ' <tr>
+                                            <td id="iz" colspan="5">SUBTOTAL Q.</td>
+                                            <td class="textright">'.$sin_iva.'</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="iz" colspan="5">IVA ('.$iva.')</td>
+                                            <td class="textright">'.$impuesto.'</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="iz" colspan="5">TOTAL Q.</td>
+                                            <td class="textright">'.$total.'</td>
+                                        </tr>';
+
+                    $arrayData['detalle'] = $detalleTabla;
+                    $arrayData['totales'] = $detalleTotales;
+                    
+                    echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+                }else{
+                    echo 'error';
+                }
+                mysqli_close($conection);
+            }
         }
         
     }

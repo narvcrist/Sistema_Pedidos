@@ -208,8 +208,146 @@ $(document).ready(function(){
         });
     });
 
+    // Buscar producto
+    $('#txt_cod_producto').keyup(function(e){
+        e.preventDefault();
+
+        var producto = $(this).val();
+        var action = 'infoProducto'
+
+            if(producto != ''){
+                $.ajax({
+                    url: 'ajax.php',
+                    type: "POST",
+                    async: true,
+                    data: {action : action, producto : producto},
+        
+                    success: function(response){
+                      if(response != 'error'){
+
+                        var info = JSON.parse(response);
+                        $('#txt_descripcion').html(info.pro_descripcion);
+                        $('#txt_existencia').html(info.pro_stock);
+                        $('#txt_cant_producto').val('1');
+                        $('#txt_precio').html(info.pro_precio);
+                        $('#txt_precio_total').html(info.pro_precio);
+
+                        // Activar cantidad
+                        $('#txt_cant_producto').removeAttr('disabled');
+
+                        // Mostrar boton AGREGAR
+                        $('#add_product_venta').slideDown();
+                      }else{
+                        $('#txt_descripcion').html('-');
+                        $('#txt_existencia').html('-');
+                        $('#txt_cant_producto').html('0');
+                        $('#txt_precio').html('00.00');
+                        $('#txt_precio_total').html('00.00');
+
+                        // Bloquear cantidad
+                        $('#txt_cant_producto').attr('disabled', 'disabled');
+                        //Ocultar boton guardar
+                        $('#add_product_venta').slideUp();
+                      }
+                    },
+                    error: function(error){
+                    }
+                });
+            } 
+    });
+
+    // Calcular el precio total del producto de acuerdo a la cantidad
+    $('#txt_cant_producto').keyup(function(e){ // keyup evento q se ejecuta cuando se suelta la tecla
+        e.preventDefault();
+
+        var precio_total = $(this).val() * $('#txt_precio').html(); // Guardo en una variable la operacion de multiplicacion
+        var stock = parseInt($('#txt_existencia').html());
+
+        $('#txt_precio_total').html(precio_total .toFixed(2));
+
+        // Ocultar boton AGREGAR si la cantodad es menor a 1
+        if( ($(this).val() <1 || isNaN($(this).val())) || ($(this).val() > stock) ){
+            $('#add_product_venta').slideUp();
+        }else{
+            $('#add_product_venta').slideDown();
+        }
+    });
+
+    // Agregar productos al detalle
+    $('#add_product_venta').click(function(e){
+        e.preventDefault();
+
+        if($('#txt_cant_producto').val() >0){
+
+            var codproducto = $('#txt_cod_producto').val();
+            var cantidad = $('#txt_cant_producto').val();
+            var action = 'addProductoDetalle';
+
+            $.ajax({
+                url : 'ajax.php',
+                type : "POST",
+                async : true,
+                data : {action : action , producto : codproducto, cantidad : cantidad},
+
+                success: function(response){
+                    
+                    if(response != 'error'){
+
+                        var info = JSON.parse(response);
+                        $('#detalle_venta').html(info.detalle);
+                        $('#detalle_totales').html(info.totales);
+
+                        $('#txt_cod_producto').val('');
+                        $('#txt_descripcion').html('-');
+                        $('#txt_existencia').html('-');
+                        $('#txt_cant_producto').val('0');
+                        $('#txt_precio').html('00.00');
+                        $('#txt_precio_total').html('00.00');
+
+                        // Bloquear input de cantidad
+                        $('#txt_cant_producto').attr('disabled', 'disabled');
+
+                        // Ocultar boton AGREGAR
+                        $('#add_product_venta').slideUp();
+                    }else{
+                        console.log('No hay datos');                    
+                    }
+                },
+                error: function(error){
+
+                }
+            });
+        }
+    })
+
 
 }); //END 
+
+function serchForDetalle(id){
+    var action = 'serchForDetalle';
+    var user = id;
+
+    $.ajax({
+        url : 'ajax.php',
+        type : "POST",
+        async : true,
+        data : {action : action , user : user},
+
+        success: function(response){
+            if(response != 'error'){
+
+                var info = JSON.parse(response);
+                $('#detalle_venta').html(info.detalle);
+                $('#detalle_totales').html(info.totales);
+            }else{
+                console.log('No hay datos');                    
+            }                    
+        },
+        error: function(error){
+
+        }
+    });
+}
 
 //Funcion para agregar mas productos
 function sendDataProduct(){
@@ -264,4 +402,22 @@ function closeModal(){
     $('.alertAddProduct').html('');
     $('#txtCantidad').val('');
     $('.modal').fadeOut();
+}
+
+// Funcion solo para el ingreso de numeros
+function solonumeros(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    numeros = "0123456789";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for(var i in especiales) {
+        if(key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+    if(numeros.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
 }

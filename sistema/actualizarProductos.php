@@ -141,11 +141,11 @@
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio:</label>
-                        <input type="text" name="precio" placeholder="Precio del producto" value="<?php echo $data_producto['pro_precio']; ?>"/>
+                        <input type="text" name="precio" placeholder="Precio del producto" value="<?php echo $data_producto['pro_precio']; ?>" onkeypress="return solonumeros(event);"/>
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad:</label>
-                        <input type="text" data-role="spinner" data-buttons-position="right" name="cantidad" data-min-value="1" data-max-value="500" value="<?php echo $data_producto['pro_stock']; ?>"/>
+                        <input type="text" data-role="spinner" data-buttons-position="right" name="cantidad" data-min-value="1" data-max-value="500" value="<?php echo $data_producto['pro_stock']; ?>" onkeypress="return solonumeros(event);"/>
                     </div>
                     <div class="form-group">
                         <div class="photo">
