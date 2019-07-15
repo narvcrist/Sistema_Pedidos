@@ -74,7 +74,7 @@
             </h5></strong></div>
             <div class="alerta"><?php echo isset($alert)? $alert : ''; ?></div>
             <div class="card-content p-2">
-            <form class="ingresar" action="" method="post">
+            <form class="ingresar" action="" method="post" data-role="validator" action="javascript:">
                     <div class="form-group">
                         <label for="nombre">Nombres y apellidos:</label>
                         <input type="hidden" name="idProveedor" value="<?php echo $idProveedor; ?>">
