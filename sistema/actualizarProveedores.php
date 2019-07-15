@@ -78,19 +78,19 @@
                     <div class="form-group">
                         <label for="nombre">Nombres y apellidos:</label>
                         <input type="hidden" name="idProveedor" value="<?php echo $idProveedor; ?>">
-                        <input type="text" name="nombre" placeholder="Ingresa tus nombres completos" value="<?php echo $nombre; ?>"/>
+                        <input type="text" name="nombre" placeholder="Ingresa tus nombres completos" value="<?php echo $nombre; ?>" data-validate="required"/>
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
                         <input type="number" name="telefono" placeholder="Ingrese el número telefónico" value="<?php echo $telefono; ?>"/>
                     </div>
                     <div class="form-group">
-                        <label for="correo">Correo eléctronico:</label>
-                        <input type="email" name="correo" placeholder="Correo eléctronico" value="<?php echo $correo; ?>"/>
+                        <label for="correo">Correo electrénico:</label>
+                        <input type="email" name="correo" placeholder="Correo electrónico" value="<?php echo $correo; ?>" data-validate="required email"/>
                     </div>
                     <div class="form-group">
                         <label for="direccion">Dirección:</label>
-                        <input type="text" name="direccion" placeholder="Ingrese la dirección"value="<?php echo $direccion; ?>"/>
+                        <input type="text" name="direccion" placeholder="Ingrese la dirección"value="<?php echo $direccion; ?>"  data-validate="required"/>
                     </div>
                     <br>
                     <div class="col-12 text-right">
