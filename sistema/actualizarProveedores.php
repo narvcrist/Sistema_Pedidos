@@ -85,8 +85,11 @@
                         <input type="number" name="telefono" placeholder="Ingrese el número telefónico" value="<?php echo $telefono; ?>"/>
                     </div>
                     <div class="form-group">
-                        <label for="correo">Correo electrénico:</label>
+                        <label for="correo">Correo electrónico:</label>
                         <input type="email" name="correo" placeholder="Correo electrónico" value="<?php echo $correo; ?>" data-validate="required email"/>
+                        <span class="invalid_feedback">
+                            Ingresa un correo electrónico válido
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="direccion">Dirección:</label>
