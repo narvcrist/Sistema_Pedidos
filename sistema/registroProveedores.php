@@ -54,8 +54,8 @@
                         <input type="number" name="telefono" placeholder="Ingrese el número telefónico" />
                     </div>
                     <div class="form-group">
-                        <label for="correo">Correo eléctronico:</label>
-                        <input type="email" name="correo" placeholder="Correo eléctronico" data-validate="required email"/>
+                        <label for="correo">Correo electrónico:</label>
+                        <input type="email" name="correo" placeholder="Correo electrónico" data-validate="required email"/>
                         <span class="invalid_feedback">
                             Ingresa un correo electrónico válido
                         </span>

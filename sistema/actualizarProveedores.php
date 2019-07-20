@@ -74,26 +74,23 @@
             </h5></strong></div>
             <div class="alerta"><?php echo isset($alert)? $alert : ''; ?></div>
             <div class="card-content p-2">
-            <form class="ingresar" action="" method="post" data-role="validator" action="javascript:">
+            <form class="ingresar" action="" method="post">
                     <div class="form-group">
                         <label for="nombre">Nombres y apellidos:</label>
                         <input type="hidden" name="idProveedor" value="<?php echo $idProveedor; ?>">
-                        <input type="text" name="nombre" placeholder="Ingresa tus nombres completos" value="<?php echo $nombre; ?>" data-validate="required"/>
+                        <input type="text" name="nombre" placeholder="Ingresa tus nombres completos" value="<?php echo $nombre; ?>"/>
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
                         <input type="number" name="telefono" placeholder="Ingrese el número telefónico" value="<?php echo $telefono; ?>"/>
                     </div>
                     <div class="form-group">
-                        <label for="correo">Correo electrónico:</label>
-                        <input type="email" name="correo" placeholder="Correo electrónico" value="<?php echo $correo; ?>" data-validate="required email"/>
-                        <span class="invalid_feedback">
-                            Ingresa un correo electrónico válido
-                        </span>
+                        <label for="correo">Correo eléctronico:</label>
+                        <input type="email" name="correo" placeholder="Correo eléctronico" value="<?php echo $correo; ?>"/>
                     </div>
                     <div class="form-group">
                         <label for="direccion">Dirección:</label>
-                        <input type="text" name="direccion" placeholder="Ingrese la dirección"value="<?php echo $direccion; ?>"  data-validate="required"/>
+                        <input type="text" name="direccion" placeholder="Ingrese la dirección"value="<?php echo $direccion; ?>"/>
                     </div>
                     <br>
                     <div class="col-12 text-right">

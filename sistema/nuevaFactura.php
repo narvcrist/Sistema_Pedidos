@@ -33,7 +33,7 @@
                 </div>
                 <div class="wd30">
                     <label for="precio">Teléfono:</label>
-                    <input type="text" name="tel_cliente" id="tel_cliente" placeholder="Teléfono del tendero" disabled required/>
+                    <input type="number" name="tel_cliente" id="tel_cliente" placeholder="Teléfono del tendero" disabled required/>
                 </div>
                 <div class="wd100">
                     <label for="cantidad">Dirección:</label>
@@ -56,7 +56,7 @@
                         <label>Acciones</label>
                         <div id="acciones_venta">
                             <button type="submit" class="button alert textcenter" id="btn_anular_venta">Anular</button>
-                            <a href="#"><input type="button" class="button success"  id="btn_facturar_venta" value="Procesar"></a>
+                            <a href="#"><input type="button" class="button success"  id="btn_facturar_venta" value="Procesar" style="display: none;"></a>
                         </div>
                     </div>  
                 </div> 
